@@ -55,6 +55,7 @@ def delete(sno):
     return redirect("/")
 
 def avi():
+    print()
     pass
 
 
