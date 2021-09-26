@@ -1,0 +1,64 @@
+ {% extends 'base.html' %}
+
+{% block body%}
+
+
+      <div class="container my-2">
+        <h2>Add your Todo</h2>
+        <form action="/" method="POST">
+            <div class="mb-3">
+              <label for="title" class="form-label">Todo Title</label>
+              <input type="text" class="form-control"  name="title"  aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="desc" class="form-label">Todo Description</label>
+              <input type="text" class="form-control"  name="desc">
+            </div>
+            <button type="submit" class="btn btn-outline-primary">Submit</button>
+          </form>
+      </div>
+      <div class="container my-3">
+          <h2>Your Todos</h2>
+        
+                {% if alltodo|length == 0 %}
+                        <div class="alert alert-dark" role="alert">
+                            No Record found
+                        </div>   
+
+
+                {% else %}
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Sno</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Update</th>
+                        <th scope="col">Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                {% for todo in alltodo %}
+                <tr>
+                    <th>{{loop.index}}</th>
+                    <td>{{todo.title}}</td>
+                    <td>{{todo.desc}}</td>
+                    <td>{{todo.date_created}}</td>
+                    <td>
+                        <a href="/update/{{todo.sno}}" type="button" class="btn btn-outline-primary btn-sm">Update</a>
+                    </td>
+                    <td>
+                        <a href="/delete/{{todo.sno}}" type="button" class="btn btn-outline-danger btn-sm">Delete</a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                  {% endif %}
+                 
+                
+ 
+            </tbody>
+          </table>
+  
+        </div>
+{% endblock body%}
