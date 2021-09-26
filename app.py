@@ -54,6 +54,9 @@ def delete(sno):
     db.session.commit()
     return redirect("/")
 
+def avi():
+    pass
+
 
 
 if __name__ == '__main__':
